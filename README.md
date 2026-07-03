@@ -168,19 +168,6 @@ El proyecto incluye el test de contexto por defecto de Spring Boot (`ProdeApplic
 
 No hay suite de tests en el frontend.
 
-## Capturas de pantalla
-
-> 📸 **Pendiente**: agregar acá screenshots del dashboard, la carga de un pronóstico, la vista de grupos/ranking y el panel de administración.
-
-## Mi contribución
-
-Trabajé en un equipo de 8 personas. Mi foco principal estuvo en la **capa de servicios del frontend y su conexión con el backend**:
-
-- Diseño e implementación de toda la capa `frontend/src/api/` (`apiClient.js`, `authService`, `equipoService`, `jornadaService`, `partidoService`, `pronosticoService`, `grupoService`, `dashboardService`, `prediccionesService`): un cliente HTTP centralizado con manejo uniforme de errores y JWT, y un módulo por dominio que traduce las respuestas del backend al formato que consumen las páginas.
-- Resolución de inconsistencias entre el contrato del backend y lo que necesitaba la UI (nombres de campos distintos entre request/response, endpoints que devuelven 500 en vez de listas vacías, límite de conexiones concurrentes del navegador) documentando cada caso en el propio código y en `frontend/ENDPOINTS.md`.
-- Capa de caché corta (`dashboardService`) para evitar recargar datos redundantes entre pantallas que comparten los mismos endpoints lentos.
-- Auditoría y documentación de los endpoints reales del backend (roles requeridos, shapes de request/response) para destrabar el desarrollo del resto del frontend.
-
 ## Notas
 
 Proyecto con fines académicos, sin licencia definida. Pensado para correr en local.
