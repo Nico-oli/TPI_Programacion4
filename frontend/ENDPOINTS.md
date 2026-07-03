@@ -265,8 +265,15 @@ Generado a partir de una lectura completa de `src\main\java\com\Programacion4\Pr
   Misma forma que el leaderboard global (`LeaderboardResponseDto`), pero acotado a los miembros de ese grupo.
 - Status: 200
 
-### ⚠️ No existe endpoint para "listar mis grupos"
-Confirmado (auditoría completa de `controller/`, `services/`, repos de Grupo): `GrupoController` solo expone los 3 endpoints de arriba (crear, unirse, leaderboard por id). No hay `GET /api/grupos`, `GET /api/grupos/mis-grupos`, ni nada en `User`/`AuthController` que devuelva los grupos de un usuario. `IGrupoMiembroRepository` solo tiene `findByGrupoId`, no `findByUserId`. Mientras no se agregue ese endpoint en el backend, el frontend no puede mostrar un listado persistente de "mis grupos" — solo puede mostrar el grupo recién creado/unido (de la respuesta del propio POST) y consultar el ranking de un grupo si se conoce su `id`.
+### GET `/api/grupos/mis-grupos`
+- Rol: USER
+- Sin parámetros — el usuario se identifica por el email del JWT.
+- Response `data` (`GrupoResponseDto[]`):
+  ```json
+  [{ "id": 0, "name": "string", "codigoInvitacion": "string (8 chars)", "miembros": ["string"] }]
+  ```
+- Status: 200
+- Nota: devuelve todos los grupos de los que el usuario es miembro (creados o unidos), resueltos vía `IGrupoMiembroRepository.findByUserId`.
 
 ---
 
